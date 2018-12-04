@@ -75,23 +75,23 @@ numMissingValues <- length(which(is.na(activityData$steps)))
 
 ##### 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
 ```{r}
-activityDataImputed <- activityData
+activityDataMissing <- activityData
 ```
 
 
 ##### 4. Make a histogram of the total number of steps taken each day 
 ```{r}
-stepsByDayImputed <- tapply(activityDataImputed$steps, activityDataImputed$date, sum)
-qplot(stepsByDayImputed, xlab='Total steps per day (Imputed)', ylab='Frequency using binwith 500', binwidth=500)
+stepsByDayMissing <- tapply(activityDataMissing$steps, activityDataMissing$date, sum)
+qplot(stepsByDayMissing, xlab='Total steps per day (Missing)', ylab='Frequency using binwith 500', binwidth=500)
 ```
 
 ##### Report the mean and median total number of steps taken per day. 
 ```{r}
-stepsByDayMeanImputed <- mean(stepsByDayImputed)
+stepsByDayMeanMissing <- mean(stepsByDayMissing)
 stepsByDayMedianImputed <- median(stepsByDayImputed)
 ```
-* Mean (Imputed): `r stepsByDayMeanImputed`
-* Median (Imputed):  `r stepsByDayMedianImputed`
+* Mean (Missing): `r stepsByDayMeanMissing`
+* Median (Missing):  `r stepsByDayMedianMissing`
 
 
 ----
@@ -100,14 +100,14 @@ stepsByDayMedianImputed <- median(stepsByDayImputed)
 ##### 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
 ```{r}
-activityDataImputed$dateType <-  ifelse(as.POSIXlt(activityDataImputed$date)$wday %in% c(0,6), 'weekend', 'weekday')
+activityDataMissing$dateType <-  ifelse(as.POSIXlt(activityDataMissing$date)$wday %in% c(0,6), 'weekend', 'weekday')
 ```
 
 ##### 2. Panel plot containing a time series plot
 
 ```{r}
-averagedActivityDataImputed <- aggregate(steps ~ interval + dateType, data=activityDataImputed, mean)
-ggplot(averagedActivityDataImputed, aes(interval, steps)) + 
+averagedActivityDataMissing <- aggregate(steps ~ interval + dateType, data=activityDataMissing, mean)
+ggplot(averagedActivityDataMissing, aes(interval, steps)) + 
     geom_line() + 
     facet_grid(dateType ~ .) +
     xlab("5-minute interval") + 
