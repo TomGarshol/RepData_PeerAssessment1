@@ -76,7 +76,6 @@ numMissingValues <- length(which(is.na(activityData$steps)))
 ##### 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
 ```{r}
 activityDataImputed <- activityData
-activityDataImputed$steps <- impute(activityData$steps, fun=mean)
 ```
 
 
