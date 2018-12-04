@@ -88,7 +88,7 @@ qplot(stepsByDayMissing, xlab='Total steps per day (Missing)', ylab='Frequency u
 ##### Report the mean and median total number of steps taken per day. 
 ```{r}
 stepsByDayMeanMissing <- mean(stepsByDayMissing)
-stepsByDayMedianImputed <- median(stepsByDayImputed)
+stepsByDayMedianMissing <- median(stepsByDayMissing)
 ```
 * Mean (Missing): `r stepsByDayMeanMissing`
 * Median (Missing):  `r stepsByDayMedianMissing`
